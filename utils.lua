@@ -45,21 +45,29 @@ end
 -- Print table
 function tprint (tbl, indent)
 
-  if not indent then indent = 0 end
-  for k, v in pairs(tbl) do
-    formatting = string.rep("  ", indent) .. k .. ": "
-    if type(v) == "table" then
-      print(formatting)
-      tprint(v, indent + 1)
-    elseif type(v) == "boolean" then
-      if v then
-        print(formatting .. "true")
+  if type(tbl) == "table" then
+    if not indent then indent = 0 end
+    for k, v in pairs(tbl) do
+      formatting = string.rep("  ", indent) .. k .. ": "
+      if type(v) == "table" then
+        print(formatting)
+        tprint(v, indent + 1)
+      elseif type(v) == "boolean" then
+        if v then
+          print(formatting .. "true")
+        else
+          print(formatting .. "false")
+        end
+      elseif type(v) == "nil" then
+        print(formatting .. "nil")
+      elseif type(v) == "function" then
+        print(formatting .. "function")
       else
-        print(formatting .. "false")
+        print(formatting .. tostring(v))
       end
-    else
-      print(formatting .. v)
     end
+  else
+    print(tb1)
   end
 
 end
