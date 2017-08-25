@@ -14,7 +14,7 @@ function getSteamId(source)
 end
 
 -- Print table
-function tprint (tbl, indent)
+function tprint(tbl, indent)
 
   if type(tbl) == "table" then
     if not indent then indent = 0 end
@@ -37,8 +37,18 @@ function tprint (tbl, indent)
         print(formatting .. tostring(v))
       end
     end
+  elseif type(tbl) == "boolean" then
+    if tbl then
+      print("true")
+    else
+      print("false")
+    end
+  elseif type(tbl) == "nil" then
+    print("nil")
+  elseif type(tbl) == "function" then
+    print("function")
   else
-    print(tb1)
+    print(tostring(tbl))
   end
 
 end
